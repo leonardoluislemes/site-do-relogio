@@ -2,66 +2,57 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Nosso Amor 💖</title>
+  <title>Amor da Minha Vida 💖</title>
   <style>
     body {
-      background-color: #fff0f5;
-      color: #444;
+      background-color: #fefefe;
       text-align: center;
-      font-family: "Segoe UI", sans-serif;
-      padding: 40px;
+      font-family: sans-serif;
+      margin-top: 50px;
     }
-    img {
-      border-radius: 20px;
-      max-width: 300px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    h1 {
+      color: #e91e63;
     }
     #timer {
-      font-size: 2em;
+      font-size: 1.5em;
       margin-top: 20px;
     }
-    audio {
-      margin-top: 30px;
+    img {
+      max-width: 300px;
+      border-radius: 15px;
     }
   </style>
 </head>
 <body>
 
-  <h1>💑 Desde que nossos caminhos se cruzaram...</h1>
-  <img src="foto.jpg" alt="Nossa foto linda">
-
+  <h1>Estamos juntos há...</h1>
   <div id="timer"></div>
+  <img src="foto.jpg" alt="Foto do casal">
 
   <audio autoplay loop>
-    <source src="musica.mp3" type="audio/mp3">
-    Seu navegador não suporta áudio.
+    <source src="musica.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio HTML.
   </audio>
 
   <script>
-    const startDate = new Date('2018-02-28T12:00:00'); // ajuste a data de vocês
+    const startDate = new Date("2018-02-28T12:00:00"); // data de início do relacionamento
 
     function updateTimer() {
       const now = new Date();
-      let diff = Math.floor((now - startDate) / 1000);
+      const diff = now - startDate;
 
-      const years = Math.floor(diff / (365.25 * 24 * 3600));
-      diff -= years * 365.25 * 24 * 3600;
+      const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+      const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-      const days = Math.floor(diff / (24 * 3600));
-      diff -= days * 24 * 3600;
-
-      const hours = Math.floor(diff / 3600);
-      diff -= hours * 3600;
-
-      const minutes = Math.floor(diff / 60);
-      const seconds = diff % 60;
-
-      document.getElementById("timer").innerHTML = 
-        ${years} anos, ${days} dias, ${hours}h ${minutes}m ${seconds}s;
+      document.getElementById("timer").innerHTML =
+        `${years} anos, ${days} dias, ${hours}h ${minutes}min ${seconds}s`;
     }
 
-    setInterval(updateTimer, 1000);
     updateTimer();
+    setInterval(updateTimer, 1000);
   </script>
 
 </body>
